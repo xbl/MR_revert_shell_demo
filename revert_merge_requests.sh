@@ -10,7 +10,7 @@ if [ -z "$release_branch" ] || [ -z "$feature_branch" ]; then
 fi
 
 # 1. 使用git log过滤出特性分支上的合并请求的提交历史记录，并包含合并请求的提交消息
-commit_hashes=$(git log origin/"$release_branch" --branches="$feature_branch" --merges --format="%H" | tac)
+commit_hashes=$(git log origin/"$release_branch" --grep="$feature_branch" --merges --format="%H" | tac)
 
 # 2. 使用找到的合并请求的提交哈希进行git revert操作
 for commit_hash in $commit_hashes; do
