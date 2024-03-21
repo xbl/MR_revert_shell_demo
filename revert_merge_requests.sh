@@ -15,7 +15,7 @@ commit_hashes=$(git log origin/"$release_branch" --grep="$feature_branch" --merg
 # 2. 使用找到的合并请求的提交哈希进行git revert操作
 for commit_hash in $commit_hashes; do
     echo "Reverting commit: $commit_hash"
-    git revert $commit_hash --no-edit
+    git revert -m 1 $commit_hash --no-edit
     
     # 如果需要自动提交撤销的更改，可以将以下两行解除注释
     # git add .
